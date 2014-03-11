@@ -1,0 +1,26 @@
+.snobs body {
+  background: url(../img/snob.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.change body {
+  background: url(../img/change.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.side-effects body {
+  background: url(../img/side-effects.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.change .reveal h2 {
+  color: #000;
+}
+.split .reveal h2, .snobs .reveal h2 {
+  color: #fff;
+}
+
+
+.login, .logout {
+  font-size: 1em !important;
+}
