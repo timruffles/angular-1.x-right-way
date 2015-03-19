@@ -34,6 +34,13 @@ body {
   color: rgb(250,250,250);
 }
 
+.image body {
+  background: #fff;
+}
+.image .reveal img {
+  max-width: 100%;
+}
+
 .reveal .slides > section {
   font-weight: 100;
 }

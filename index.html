@@ -56,19 +56,19 @@
 </script></section>
 
 <section data-markdown ><script type="text/template">
-## Your toy example worked so well
+## Your toy apps work so well
 
 > "todo lists were never this easy before!"
 </script></section>
 
 <section data-markdown ><script type="text/template">
-## You convince your colleagues
+## You've convinced my colleagues
 
 > "omg data-binding!"
 </script></section>
 
 <section data-markdown ><script type="text/template">
-## You get buy-in from your boss
+## You've got buy-in from your boss
 
 > "made by Google you say?"
 </script></section>
@@ -100,11 +100,19 @@
 </script></section>
 
 <section data-markdown data-state=title><script type="text/template">
-## Wasn't it supposed to be a solution?
+## It's all suddenly looking like
+</script></section>
+
+<section data-state=image>
+  <img src="img/last-codebase.jpg">
+</section>
+
+<section data-markdown><script type="text/template">
+## This was my story
 </script></section>
 
 <section data-markdown><script type="text/template">
-## So, we learned something (again)
+## So, I learned something (again)
 </script></section>
 
 <section data-markdown><script type="text/template">
@@ -119,9 +127,9 @@
 ## I've written a few Angular apps now
 </script></section>
 
-<section data-markdown data-state=title><script type="text/template">
-## What did I learn?
-</script></section>
+  <section data-markdown data-state=title><script type="text/template">
+  ## What did I learn?
+  </script></section>
 
 <section data-markdown><script type="text/template">
 ## Angular isn't a framework
@@ -132,11 +140,20 @@
   </script></section>
 
   <section data-markdown><script type="text/template">
-  ## Angular is the start
+  ## Not big enough to be
+
+  - model layer, *nope*
+  - structuring apps, *nope*
+  - large scale architecture, *nope*
+
   </script></section>
 
   <section data-markdown><script type="text/template">
-  ## You pick what happens next
+  ## Angular leaves big decisions up to you
+  </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## Choose your own adventure framework
   </script></section>
 
   <section data-markdown><script type="text/template">
@@ -171,11 +188,18 @@ app
     </section>
 
     <section data-markdown><script type="text/template">
-    ## Issues
+    ## Monolithic
+    </script></section>
 
-    1. monolithic
-    1. low locality (related things close)
-    1. no conventions
+    <section data-markdown><script type="text/template">
+    ## Low locality
+
+    - related things close
+    - a very under-appreciated virtue (compared to say, 'modularity')
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## No conventions
     </script></section>
 
     <section>
@@ -213,11 +237,33 @@ app
     <section data-markdown><script type="text/template">
     ## Conventions
 
+    - more important the bigger the app, reduce cognitive load
     - `index.js` for a top-level
     - `index.html` for a directive's primary template
     </script></section>
 
+  <section data-markdown data-state=title><script type="text/template">
+  ## I learned Angular is small
+  </script></section>
 
+  <section data-markdown><script type="text/template">
+  ## So I still had to make decisions
+  </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## Like a framework author
+  </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## Framework
+  - conventions
+  - support good design (modularity, locality etc)
+  - built it up towards your problem
+  </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## I also realised...
+  </script></section>
 
   <section data-markdown data-state=title><script type="text/template">
   ## It's lucky Angular isn't a framework
@@ -249,24 +295,8 @@ app
     ## Why?
     </script></section>
 
-    <section data-markdown><script type="text/template">
-    ## Confusing...
-    </script></section>
-
-    <section data-markdown><script type="text/template">
-    ## Proprietary...
-    </script></section>
-
-    <section data-markdown><script type="text/template">
-    ## Browser only...
-    </script></section>
-
-    <section data-markdown><script type="text/template">
-    ## Barely any features...
-    </script></section>
-
-    <section data-markdown><script type="text/template">
-    ## Naming
+     <section data-markdown><script type="text/template">
+    ## Confusing
     </script></section>
 
       <section data-markdown><script type="text/template">
@@ -279,6 +309,16 @@ app
 
       <section data-markdown><script type="text/template">
       ## Yuk
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## `Singleton`
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Implementation leaks into user's designs
+
+      - docs are at fault
       </script></section>
 
     <section data-markdown><script type="text/template">
@@ -315,17 +355,115 @@ app
       </script></section>
 
     <section data-markdown><script type="text/template">
-    ## What to use instead?
+    ## So I asked myself
     </script></section>
 
+    <section data-markdown><script type="text/template">
+    ## "Can I keep Angular and lose its module system?"
+    </script></section>
+
+    <section data-markdown data-state=title><script type="text/template">
+    ## Yes
+    </script></section>
+
+      <section>
+        <img src="img/browserify.svg" width=4000>
+      </section>
+
       <section data-markdown><script type="text/template">
-      ## Lazy-loading
+      ## Browserify
+
+      - `npm` in the browser
+      - CommonJS format
       </script></section>
 
       <section data-markdown><script type="text/template">
-      ## Building
+      ## My structure:
+
+      ```javascript
+      exports.controllers = {
+        "SearchCtrl": SearchCtrl,
+      };
+
+      exports.directives = {};
+
+      exports.routes = {
+        "/": {
+          template: require("./search.html")
+        },
+      }
+
+      function SearchCtrl() {
+        this.message = "hello"
+      }
+      ```
       </script></section>
 
+      <section data-markdown><script type="text/template">
+      ## Get setup
+
+      1. grunt
+      1. grunt-browerify
+      1. grunt-browerify-watch
+      1. grunt-browerify-angular
+      1. grunt-browerify-templates
+      1. grunt-browerify-biscuits
+      1. grunt-browerify-lazy-load
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## `</joke>`
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## The stack
+
+      ```sh
+      npm install --save browserify watchify stringify
+      ```
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Unwrap Angular's module stuff
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ```sh
+      require("angular");
+      require("angular-route");
+
+      var _ = require("lodash");
+
+      angular.module('events', ["ngRoute"])
+      .config(function($controllerProvider, $compileProvider, $routeProvider) {
+
+        exports.controller = function(controller, name) {
+          $controllerProvider.register(name, controller);
+        }
+        // same for filter, routes, etc
+        // can use these for lazy-load
+
+        var deps = [
+          require("../create-event"),
+          require("../search-events"),
+        ];
+
+        deps.forEach(function(module) {
+          _.each(module.controllers || {}, exports.controller)
+          // same for directives, filters etc
+        });
+      });
+      
+      ```
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Workflow
+
+      ```sh
+      watchify -r stringify -o dist/app.js features/core/index.js
+      ```
+      </script></section>
 
     <section data-markdown data-state=title><script type="text/template">
     ## `$resource`
@@ -335,34 +473,382 @@ app
       ## ActiveRecord: bad idea or worst idea ever?
       </script></section>
 
+      <section data-markdown><script type="text/template">
+      ## AR is good at CRUD
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## AR is about persistence
+
+      - not: forms
+      - or domain logic
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Putting everything in AR
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Summons cthulu
+
+      > I give people one piece of advice: make smaller things
+
+      Sandi Metz (we can learn things from Rubyists)
+
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## I'm happiest with
+
+      - `ServerCommand` object, to encapsulate transaction
+      - using `$http` with objects and arrays for most data
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Functional programming
+
+      > Better to have 100 functions for one data structure than 10 functions for 10 data structures."
+      
+      - Alan J. Perlis
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Prefer `$http` and promises
+
+      - keep data simple
+      </script></section>
+
+<section data-markdown><script type="text/template">
+## So I learned to edit Angular
+</script></section>
+
+<section data-markdown><script type="text/template">
+## And this is generally applicable
+</script></section>
+
+<section data-markdown><script type="text/template">
+## And also why we should
+</script></section>
+
+<section data-markdown><script type="text/template">
+## Write smaller things
+</script></section>
+
+<section data-markdown><script type="text/template">
+## If we want adoption and longevity
+</script></section>
+
+<section data-markdown><script type="text/template">
+## Big things have lots of ego
+</script></section>
+
+<section data-markdown><script type="text/template">
+## So they don't play well with others
+</script></section>
+
+<section data-markdown><script type="text/template">
+## Others stop talking to them
+</script></section>
+
+<section data-markdown><script type="text/template">
+## ...and they die alone
+
+1. dojo
+1. Ext.JS
+1. GWT
+</script></section>
+
+<section data-markdown><script type="text/template">
+## But equally, I realised...
+</script></section>
 
 
 <section data-markdown data-state=title><script type="text/template">
-## Loads of the brilliant bits of Angular...
+## Brilliant bits of Angular are underused
 </script></section>
 
   <section data-markdown><script type="text/template">
-  ## Don't get used
+  ## `Controller as alias` syntax is required
+
+  > Explicit is better than implicit.
+
+  Zen of Python, PEP 20, Tim Peters
   </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## `$scope` is a big shared namespace
+
+    - write smaller things
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+
+    ## Scope vars are implicit
+
+    - who owns them?
+      
+```html
+<div ng-controller="GraphCtrl"
+  <table >
+    <tr ng-repeat="row in data">
+    </tr>
+  </table>
+
+  <div class='line-graph-header'>
+    <h3>{{ lineGraphTitle }}</h3>
+  </line-graph>
+</div>
+```
+    </script></section>
 
   <section data-markdown><script type="text/template">
   ## Directives are your friends
   </script></section>
 
     <section data-markdown><script type="text/template">
-    ## e.g
+    ## Prefer them to controllers
+    </script></section>
 
+      <section data-markdown><script type="text/template">
+      ## More explicit
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## More abstraction
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## More aligned with the future
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## For example
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      
+```html
+<data-table
+  controller-as="dataTable"
+  width="800 + ctrl.padding"
+  >
+</data-graph>
+
+<line-graph
+  x-scale="ctrl.scale"
+  y-scale="ctrl.yScale"
+  data="dataCtrl.series"
+  width="800 + ctrl.padding"
+  on-inspect="dataTable.data = $series"
+  >
+</line-graph>
+```
+      </script></section>
+
+
+      <section data-markdown><script type="text/template">
+
+```javascript
+module.exports = function() {
+
+  return {
+    restrict: "E",
+    controllerAs: "ctrl",
+    bindToController: true,
+    controller: LineGraphCtrl,
+    link: lineGraph,
+    scope: {
+      xScale: "=",
+      // ...
+      onInspect: "&"
+    }
+  }
+
+}
+```
+
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+
+```javascript
+function lineGraph(scope, el, attrs, ctrl) {
+  
+  // ...
+  points.on("click", function(d, i) {
+    ctrl.onInspect({
+      $series: d,
+    });
+  })
+}
+```
+
+      </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## Directives are great, but if you add
+  </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## `ngModelController`
+  </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## ...they're AMAZING
+  </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Show of hands
+
+    - who's used it with custom directives?
+
+    ```html
+    <my-widget ng-model="something">
+    ```
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## What is `ng-model`
+
+    - mostly `ngModelController`
 
     </script></section>
 
+    <section data-markdown><script type="text/template">
+    ## `ngModelController` is a form object
+
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Most widgets are really `<inputs>`
+
+    - user editing
+    - have state
+    - why reinvent the wheel?
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Plays well with `<form>`
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## For example...
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## `<input type=time>` is boring
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## What about a big clock face to drag?
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Can `ng-model` be used on that?
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Let's try
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+```html
+ <form name=timeForm>
+
+  <div class='extended-clock'>
+    <svg width=1000 height=1000 >
+      <g clock-input ng-model=item.time name=time></g>
+        <text x=500 y=500>
+          {{ item.time | date:"shortTime" }}
+        </text>
+        <text x=500 y=550 ng-click="toggle()">
+          {{ ticking ? "Stop" : "Start" }}
+        </text>
+    </svg>
+  </div>
+
+</form>
+```
+    </script></section>
+
+        <section data-markdown><script type="text/template">
+```javascript
+function clock() {
+  return {
+    // we require an instance of ng-model to work
+    require: "ngModel",
+    link: function(scope, el, attrs, ngModel) {
+
+      // initialize the non-angular widget, and
+      // pass in our model updating fn
+      var clock = donutClock({
+        onInput: view2model,
+        el: el[0],
+      });
+
+      // when angular detects a change to the model,
+      // we update our widget
+      ngModel.$render = model2view;
+        
+      function model2view(time) {
+        clock.set(ngModel.$viewValue);
+      }
+
+      function view2model(fromView) {
+        ngModel.$setViewValue(fromView);
+      }
+
+    }
+  }
+}
+```
+
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Example
+
+    - [live demo](./demos/ngModelController/index.html)
+    </script></section>
 
 
+<section data-markdown data-state=title><script type="text/template">
+## It was a long path
+</script></section>
 
+<section data-markdown><script type="text/template">
+## I learned...
+</script></section>
 
+<section data-markdown><script type="text/template">
+## That making apps is still hard
+</script></section>
+
+<section data-markdown><script type="text/template">
+## That Angular wants me to extend it
+</script></section>
+
+<section data-markdown><script type="text/template">
+## That Angular is ok with an open relationship
+</script></section>
+
+<section data-markdown><script type="text/template">
+## We don't have to do everything together
+</script></section>
+
+<section data-markdown><script type="text/template">
+## And finally, that I should RTFM
+
+- (though... the docs could still be a lot better)
+</script></section>
 
 
 <section data-markdown ><script type="text/template">
-# Any questions?
+# Questions?
+
+- Build Angular into *your* framework
+- Replace the bad (`modules`, `$resource`)
+- Use the good (`directives`, `ngModel`)
 
 ### [@timruffles](http://twitter.com/timruffles)
 </script></section>
