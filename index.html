@@ -17,11 +17,349 @@
     <div class="slides">
 
 <section data-markdown class=front><script type="text/template">
-# SOMETHING!!
+# Angular 1.x
 
 [@timruffles](http://twitter.com/timruffles)
 [@sidekicksrc](http://twitter.com/sidekicksrc)
 </script></section>
+
+<section data-markdown ><script type="text/template">
+## The adoption cycle
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## You've just finished a project
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## It got pretty ugly
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## Retrospectives :(
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## But wait... there...
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## A new hope!
+</script></section>
+
+<section>
+  <img src="img/angularjs.svg" width=4000>
+</section>
+
+<section data-markdown ><script type="text/template">
+## A new framework!!!
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## Your toy example worked so well
+
+> "todo lists were never this easy before!"
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## You convince your colleagues
+
+> "omg data-binding!"
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## You get buy-in from your boss
+
+> "made by Google you say?"
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## It's decided... the next project is in... Angular!!!
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## (or, please no, a rewrite)
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## Early features are a success
+
+> "desk beers?"
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## But slowly...
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## The beast creeps in
+</script></section>
+
+<section data-markdown ><script type="text/template">
+## There are parts of the project you don't want to look at
+</script></section>
+
+<section data-markdown data-state=title><script type="text/template">
+## Wasn't it supposed to be a solution?
+</script></section>
+
+<section data-markdown><script type="text/template">
+## So, we learned something (again)
+</script></section>
+
+<section data-markdown><script type="text/template">
+## Turns out web-apps are hard
+</script></section>
+
+<section data-markdown><script type="text/template">
+## Turns out design is still a thing
+</script></section>
+
+<section data-markdown><script type="text/template">
+## I've written a few Angular apps now
+</script></section>
+
+<section data-markdown data-state=title><script type="text/template">
+## What did I learn?
+</script></section>
+
+<section data-markdown><script type="text/template">
+## Angular isn't a framework
+</script></section>
+
+  <section data-markdown><script type="text/template">
+  ## ???
+  </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## Angular is the start
+  </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## You pick what happens next
+  </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## What happened when I assumed Angular was 'done'?
+  </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## Bad defaults
+  </script></section>
+  
+    <section data-markdown><script type="text/template">
+    ## e.g folder structure
+    </script></section>
+
+    <section>
+      <h2>The default</h2>
+
+<pre>
+app
+  controllers
+    someCtrl.js
+
+    # 100 more...
+
+  directives
+    someDirective.js
+
+    # 100 more...
+
+  templates
+</pre>
+    </section>
+
+    <section data-markdown><script type="text/template">
+    ## Issues
+
+    1. monolithic
+    1. low locality (related things close)
+    1. no conventions
+    </script></section>
+
+    <section>
+      <h2>Much happier with...</h2>
+
+<pre>
+app
+  features
+    home-page
+      index.html
+      index.js
+    account
+      user-widget
+        index.html
+        index.js
+  components
+    breadcrumb
+      index.js
+      index.html
+  common
+    resource
+      index.js
+</pre>
+    </section>
+
+    
+    <section data-markdown><script type="text/template">
+    ## Features folder
+
+    - page or modal level
+    - mix of reusable things from `components` and one offs
+    </script></section>
+
+        
+    <section data-markdown><script type="text/template">
+    ## Conventions
+
+    - `index.js` for a top-level
+    - `index.html` for a directive's primary template
+    </script></section>
+
+
+
+  <section data-markdown data-state=title><script type="text/template">
+  ## It's lucky Angular isn't a framework
+  </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## As some of Angular
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Is slightly...
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## ~~slightly~~ completely
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## AWFUL
+
+    :(
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Module system
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Why?
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Confusing...
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Proprietary...
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Browser only...
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Barely any features...
+    </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Naming
+    </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Factory, service, provider, constant
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Yuk
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Yuk
+      </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## Proprietary
+    </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Reuse
+
+      > "You can package code as reusable modules."
+      
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Reuse
+
+      > "You can package code as reusable modules."
+
+      > "...as long as all your code is Angular"
+      
+      </script></section>
+
+
+    <section data-markdown><script type="text/template">
+    ## Missing features
+    </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Lazy-loading
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Building
+      </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## What to use instead?
+    </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Lazy-loading
+      </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## Building
+      </script></section>
+
+
+    <section data-markdown data-state=title><script type="text/template">
+    ## `$resource`
+    </script></section>
+
+      <section data-markdown><script type="text/template">
+      ## ActiveRecord: bad idea or worst idea ever?
+      </script></section>
+
+
+
+<section data-markdown data-state=title><script type="text/template">
+## Loads of the brilliant bits of Angular...
+</script></section>
+
+  <section data-markdown><script type="text/template">
+  ## Don't get used
+  </script></section>
+
+  <section data-markdown><script type="text/template">
+  ## Directives are your friends
+  </script></section>
+
+    <section data-markdown><script type="text/template">
+    ## e.g
+
+
+    </script></section>
+
+
+
+
+
+
 
 <section data-markdown ><script type="text/template">
 # Any questions?
@@ -91,8 +429,9 @@
         { src: 'reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
 
         // Interreveal/pret Markdown in <section> elements
-    { src: 'reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-    { src: 'reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); }, callback: function() { baconDemo() } },
+        { src: 'reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); }, callback: function() { 
+                                                                                                                                                           } },
 
         // Syntareveal/x highlight for <code> elements
           { src: 'reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
